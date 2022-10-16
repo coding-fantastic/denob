@@ -1,0 +1,166 @@
+{% extends 'store/layouts/main.html' %}
+<b></b>
+{% load static %}
+<b></b>
+{% block content %}
+
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-4">
+      <img
+        src="{{ outlets.image.url }}"
+        alt="Logo image"
+        class="w-100"
+        height="200"
+      />
+    </div>
+    <div class="col-8">
+      <h3><b>Outlet name : </b> {{outlets.name}}</h3>
+
+      <p><b>Outlet Description : </b> {{outlets.description}}</p>
+      <p><b>Opening Hours :</b> 9:00AM - 6:00PM Everyday</p>
+    </div>
+  </div>
+  {% comment %} /* Available servicemen */ {% endcomment %}
+  <div class="card mt-4 servicemenData">
+    <h3 class="card-header">Available Servicemen at {{outlet.name}}</h3>
+    <ul class="list-group list-group-flush">
+      {% for serviceman in servicemen %}
+      <li class="list-group-item liclass">
+        {%csrf_token %}
+        <b></b>
+        {% comment %} input tag for ajax to add to cart {% endcomment %}
+        <input type="hidden" value="{{serviceman.id}}" class="servicemanid" />
+        <img
+          src="{{ serviceman.image.url }}"
+          alt="Service Image"
+          class="w-10"
+          height="40"
+        />
+        {{serviceman.name}}
+        <span class="float-end">
+          <span class="me-5"> {{serviceman.service}} </span>
+          <button type="button" class="btn btn-sm btn-danger addToCartBtn">
+            <i class="bi bi-person-circle">Add</i>
+          </button>
+        </span>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% comment %} /* end of Available servicemen */ {% endcomment %}
+
+  <b></b>
+  {% comment %} start of Menuitems {% endcomment %}
+  <h3 class="pb-1 mt-3">
+    MenuItems at {{outlets.name}}
+    <a href="" class="float-end">See All</a>
+  </h3>
+  <div class="row mb-4">
+    {% for item in menuitemInthisOutlet %}
+    <div class="col-md-3">
+      <div class="card">
+        <div class="">
+          <a href="">
+            <img
+              src="{{ item.image.url }}"
+              alt="Menuitem Image"
+              class="w-100"
+              height="200"
+            />
+          </a>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">
+            <a href=""> {{item.name}} </a>
+          </h5>
+        </div>
+      </div>
+    </div>
+
+    {% endfor %}
+  </div>
+  {% comment %} end of Menuitems {% endcomment %}
+</div>
+
+{% comment %}
+<div class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card shadow product_data">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-4">
+                <p>sdfds</p>
+              </div>
+              <div class="col-md-8">
+                <h2 class="mb-0">
+                  <label
+                    for=""
+                    style="font-size: 12px"
+                    class="float-end badge bg-danger"
+                    >Trending</label
+                  >
+                </h2>
+                <hr />
+                <label for="" class="me-3"
+                  >Original Price : <s> Ksh 10 </s></label
+                >
+                <label for="" class="fw-bold">Selling Price : Ksh 30 </label>
+
+                <hr />
+                <div class="row mt-2">
+                  <div class="col-md-3">
+                    {% csrf_token %}
+                    <input type="hidden" name="" value="w" class="prod_id" />
+                    <label for="Quantity">Quantity</label>
+                    <div
+                      class="input-group text-center mb-3"
+                      style="width: 130px"
+                    >
+                      <button class="input-group-text decrement-btn">-</button>
+                      <input
+                        type="text"
+                        name="quantity"
+                        value=""
+                        class="form-control qty-input text-center"
+                      />
+                      <button class="input-group-text increment-btn">+</button>
+                    </div>
+                  </div>
+                  <div class="col-md-9">
+                    <br />
+
+                    <button
+                      type="button"
+                      class="btn btn-primary me-3 float-start addToCartBtn"
+                    >
+                      Add to Cart <i class="fa fa-shopping-cart"></i>
+                    </button>
+
+                    <button
+                      type="button"
+                      class="btn btn-success me-3 addToWishlist float-start"
+                    >
+                      Add to Wishlist <i class="fa fa-heart"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <hr />
+              <h3>Description</h3>
+              <p class="mt-3">{{ products.description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endcomment %}
+<b></b>
+
+{% endblock content %}

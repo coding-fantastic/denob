@@ -1,0 +1,147 @@
+{% extends 'store/layouts/main.html' %}
+<b></b>
+{% block content %}
+<b></b>
+
+<div class="py-3 bg-primary">
+  <div class="container">
+    <a class="text-white" href=""> Home / </a>
+    <a class="text-white" href=""> Collections / </a>
+    <a class="text-white" href=""> {{location}} </a>
+  </div>
+</div>
+
+{% comment %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>List of outlets</h1>
+      <div class="row">
+        {% for item in outlets %}
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <div class="category-image">
+                <img
+                  src="{{ item.image.url }}"
+                  alt="Category Image"
+                  class="w-100"
+                  height="200"
+                />
+              </div>
+              <h4>{{item.name}}</h4>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endcomment %}
+
+<div class="container mt-4">
+  {% comment %} start of outlets {% endcomment %}
+  <h3 class="pb-1 my-2">
+    List of Outlets in {{location}}
+    <a href="" class="float-end">See All</a>
+  </h3>
+  <div class="row mb-4">
+    {% for outlet in outlets %}
+    <div class="col-md-3">
+      <div class="card">
+        <div class="category-image">
+          <a href="{% url 'outletDetail' outlet.id  %}">
+            <img
+              src="{{ outlet.image.url }}"
+              alt="Outlet Image"
+              class="w-100"
+              height="200"
+            />
+          </a>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">
+            <a href=""> {{outlet.name}} </a>
+          </h5>
+        </div>
+      </div>
+    </div>
+
+    {% endfor %}
+  </div>
+  {% comment %} end of outlets {% endcomment %}
+
+  <b></b>
+  {% comment %} start of service men {% endcomment %}
+  <h3 class="pb-1 my-2">
+    Available servicemen in {{location}}
+    <a href="" class="float-end">See All</a>
+  </h3>
+  <div class="row mb-4">
+    {% for item in servicemen %}
+    <div class="col-md-3">
+      <div class="card">
+        <div class="">
+          <a href="">
+            <img
+              src="{{ item.image.url }}"
+              alt="Item Image"
+              class="w-100"
+              height="200"
+            />
+          </a>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">
+            <a href=""> {{item.name}} </a>
+          </h5>
+        </div>
+        <div class="card-footer">
+          <div class="title">
+            <span> Service: {{item.service}}</span>
+            <span class="float-end">Orders> {{item.threshold}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% endfor %}
+  </div>
+  {% comment %} end of service men {% endcomment %}
+
+  <b></b>
+  {% comment %} start of Menuitems {% endcomment %}
+  <h3 class="pb-1 my-2">
+    MenuItems in {{location}}
+    <a href="" class="float-end">See All</a>
+  </h3>
+  <div class="row mb-4">
+    {% for item in menuitem %}
+    <div class="col-md-3">
+      <div class="card">
+        <div class="">
+          <a href="">
+            <img
+              src="{{ item.image.url }}"
+              alt="Menuitem Image"
+              class="w-100"
+              height="200"
+            />
+          </a>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">
+            <a href=""> {{item.name}} </a>
+          </h5>
+        </div>
+      </div>
+    </div>
+
+    {% endfor %}
+  </div>
+  {% comment %} end of Menuitems {% endcomment %}
+</div>
+
+<b></b>
+{% endblock content %}

@@ -1,0 +1,75 @@
+{% extends 'store/layouts/main.html' %}
+<b></b>
+{% block content %}
+<b></b>
+
+<div class="py-3 bg-primary">
+  <div class="container">
+    <a class="text-white" href="{% url 'home' %}"> Home / </a>
+    <a class="text-white" href="{% url 'cart' %}"> Orders </a>
+  </div>
+</div>
+
+<div class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card shadow">
+          <div class="card-body">
+            {% if cart %}
+            <b></b>
+            {% for item in cart %}
+            <b></b>
+            {% comment %} to differenctiat service , outlet and menuitem start
+            in this for loop {% endcomment %}
+            <b></b>
+            <div class="row">
+              <div class="col-md-2 my-auto">
+                <img
+                  src=" {{item.servicemen.image.url}} "
+                  height="70px"
+                  width="70px"
+                  alt="Image here "
+                />
+              </div>
+              <div class="col-md-2 my-auto">
+                <h6>{{item.servicemen.name}}</h6>
+              </div>
+              <div class="col-md-2 my-auto">
+                <h6>{{item.servicemen.service}}</h6>
+              </div>
+              <div class="col-md-2 my-auto">
+                Price
+                <h6>Ksh. {{item.servicemen.price}}</h6>
+              </div>
+              <div class="col-md-2 my-auto">
+                Threshold
+                <h6>{{item.servicemen.threshold}}</h6>
+              </div>
+              <div class="col-md-2 my-auto">
+                <button class="btn btn-danger delete-cart-item">
+                  <i class="fa fa-trash"></i>Remove
+                </button>
+              </div>
+            </div>
+            <b></b>
+            {% endfor %}
+            <b></b>
+            <div class="mt-2">
+              <a
+                href=" {% url 'checkout' %} "
+                class="btn btn-outline-success float-end"
+                >Checkout</a
+              >
+            </div>
+            {% else %}
+            <p>No item</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

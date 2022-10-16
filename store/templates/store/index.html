@@ -1,0 +1,53 @@
+{% extends 'store/layouts/main.html' %}
+<b></b>
+{% load static %}
+<b></b>
+
+{% block content %}
+<b></b>
+
+<style>
+  .bg {
+    background-image: url("{% static 'images/plenio.jpg' %}");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+</style>
+
+{% comment %} {% include 'store/inc/slider.html' %} {% endcomment %}
+
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-2">
+      <p>Enter your location</p>
+    </div>
+
+    <div class="col-md-6">
+      <div class="search-bar">
+        <form action=" {% url 'searchLoc' %} " method="POST">
+          {% csrf_token %}
+          <div class="input-group flex-nowrap">
+            <input
+              type="search"
+              class="form-control"
+              id="searchlocation"
+              name="locationSearch"
+              placeholder="Enter a Location eg Killimani"
+              required
+            />
+            <button type="submit" class="btn btn-primary">
+              <span class="input-group-text" id="addon-wrapping">
+                <i class="bi bi-map"></i>
+              </span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="col-md-4"></div>
+  </div>
+</div>
+
+{% endblock content %}
