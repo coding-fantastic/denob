@@ -79,5 +79,3 @@ def outletDetail(request, id):
     servicemen = Servicemen.objects.filter(outlet__id = id) 
     context = {'outlets': outlets , 'servicemen': servicemen , 'menuitemInthisOutlet': menuitemInthisOutlet }
     return render(request , "store/tripleitems/outlets/outletsDetail.html", context)
-
-
